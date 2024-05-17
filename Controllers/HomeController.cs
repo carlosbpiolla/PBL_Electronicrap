@@ -24,7 +24,7 @@ namespace PBL_Electronicrap.Controllers
 
         public IActionResult Privacy()
         {
-            return View();
+            return View("oioioioioi");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
