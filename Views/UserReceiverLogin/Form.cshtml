@@ -1,0 +1,28 @@
+﻿@model UserReceiverLoginViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="form-container">
+    <form action="Save" method="post" class="form-group">
+        <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+        <label for="Id" class="control-label">Id</label>
+        @if (ViewBag.Operacao == "I" || ViewBag.Operacao == "A")
+            {
+                <input asp-for=id id="id" class="form-control" readonly/>
+            }
+        <span asp-validation-for="id" class="text-danger"></span>
+
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input asp-for="username" type="text" id="username" name="username" readonly>
+        </div>
+        <div class="form-group">
+            <label for="password">Senha:</label>
+            <input type="text" id="password" name="password" required>
+        </div>
+        
+        <div class="form-group">
+            <button type="submit">Enviar</button>
+        </div>
+    </form>
+</div>
