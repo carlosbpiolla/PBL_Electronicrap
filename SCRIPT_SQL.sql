@@ -423,3 +423,28 @@ begin
  end
  exec(@sql)
 end
+
+--CHECA A TENTATIVA DE LOGIN
+ALTER PROCEDURE spConsulta_Login
+(
+    @username NVARCHAR(MAX),
+    @password NVARCHAR(MAX),
+    @tabela NVARCHAR(MAX)
+)
+AS
+BEGIN
+    DECLARE @sql NVARCHAR(MAX);
+
+    IF @tabela = 'register_sender_logins'
+    BEGIN
+        SET @sql = 'SELECT * FROM ' + QUOTENAME(@tabela) +
+                   ' WHERE fk_sender_username = @username AND sender_password = @password';
+    END
+    ELSE IF @tabela = 'register_receiver_logins'
+    BEGIN
+        SET @sql = 'SELECT * FROM ' + QUOTENAME(@tabela) +
+                   ' WHERE fk_receiver_username = @username AND receiver_password = @password';
+    END
+
+    EXEC sp_executesql @sql, N'@username NVARCHAR(MAX), @password NVARCHAR(MAX)', @username, @password;
+END

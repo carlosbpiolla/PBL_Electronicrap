@@ -33,8 +33,8 @@ namespace PBL_Electronicrap.DAO
             SqlParameter[] parametros =
             {
                 new SqlParameter("sender_login_id", Convert.ToInt32(model.id)),
-                new SqlParameter("fk_sender_username", model.username.ToString()),
-                new SqlParameter("sender_password", model.password.ToString())
+                new SqlParameter("fk_sender_username", model.username.ToString().ToLower()),
+                new SqlParameter("sender_password", model.password.ToString().ToLower())
             };
             return parametros;
         }
