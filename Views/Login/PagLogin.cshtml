@@ -1,0 +1,23 @@
+﻿@model LoginViewModel
+
+<div class="form-container">
+    <form action="Login" method="post" class="form-group">
+        <h2>Login</h2>
+            <label for="username">Usuário:</label>
+            <input type="text" id="username" name="username" required>
+            <span asp-validation-for="username" class="text-danger"></span>
+
+            
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+            <span asp-validation-for="password" class="text-danger"></span>
+
+            
+            <div class="radio-group">
+                <label><input type="radio" id="userType" name="userType" value="sender" required> Sender</label>
+                <label><input type="radio" id="userType" name="userType" value="receiver" required> Receiver</label>
+            </div>
+            
+            <button type="submit">Entrar</button>
+        </form>
+        </div>

@@ -52,7 +52,7 @@ namespace PBL_Electronicrap.DAO
             var parametros = new SqlParameter[15];
 
             parametros[0] = new SqlParameter("user_receiver_id", Convert.ToInt32(model.id));
-            parametros[1] = new SqlParameter("username", model.username.ToString());
+            parametros[1] = new SqlParameter("username", model.username.ToString().ToLower());
             parametros[2] = new SqlParameter("full_name", model.full_name.ToString());
             parametros[3] = new SqlParameter("fantasy_name", model.fantasy_name.ToString());
             parametros[4] = new SqlParameter("cnpj", model.cnpj.ToString().Replace(".", "").Replace("/", "").Replace("-", ""));

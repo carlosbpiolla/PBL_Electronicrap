@@ -106,7 +106,11 @@
         }
     });
 </script>
-
+<script>
+        function toLowerCase(input) {
+            input.value = input.value.toLowerCase();
+        }
+    </script>
 <div class="form-container">
     <form action="Save" method="post" class="form-group">
         <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
@@ -119,7 +123,7 @@
 
         <div class="form-group">
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username">
+            <input type="text" id="username" name="username" oninput="toLowerCase(this)">
             <span asp-validation-for="username" class="text-danger"></span>
         </div>
         <div class="form-group">
