@@ -11,40 +11,56 @@ namespace PBL_Electronicrap.Controllers
         {
             return View("PagLogin");
         }
-        public IActionResult PagInicial()
+        public IActionResult HomeReceiver()
         {
-            return View("PagInicial");
+            return View("PagInicialReceiver");
         }
-
+        public IActionResult HomeSender()
+        {
+            return View("PagInicialSender");
+        }
         public IActionResult Login(LoginViewModel model)
         {
             try
             {
-                ValidaLogin(model);
+                if (ModelState.IsValid == false)  
+                {
+                    return RedirectToAction("PagInicial");
+                }
+                else
+                {
+                    ModelState.Clear(); // limpa os erros criados automaticamente pelo Asp.net (que podem estar com msg em inglês)
+                    var p = new SqlParameter[]
+                    {
+                         new SqlParameter("username", model.username.ToLower()),
+                         new SqlParameter("password", model.password.ToLower()),
+                         new SqlParameter("userType", model.userType)
+                    };
+                    var tabela = HelperDAO.ExecutaProcSelect("spConsulta_Login", p);
+                    if (tabela.Rows.Count == 0)
+                    {
+                        ModelState.AddModelError("username", "Usuário ou senha inválidos");
+                        return RedirectToAction("PagLogin");
+                    }
+                    else
+                    {
+                        if (model.userType == "sender")
+                            return View("PagInicialSender");
+                        else
+                            return View("PagInicialReceiver");
+                    }
+                        
+                }
+
 
 
             }
             catch (Exception erro)
             {
-                return View("Error", new ErrorViewModel( erro.ToString()));
+                return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
 
-        private void ValidaLogin(LoginViewModel model)
-        {
-            ModelState.Clear(); // limpa os erros criados automaticamente pelo Asp.net (que podem estar com msg em inglês)
-            var p = new SqlParameter[]
-                {
-                 new SqlParameter("username", model.username.ToLower()),
-                 new SqlParameter("password", model.password.ToLower()),
-                 new SqlParameter("userType", model.userType)
-            };
-            var tabela = HelperDAO.ExecutaProcSelect("spConsulta_Username", p);
-            if (tabela.Rows.Count == 0)
-                return null;
-            else
-                return RedirectToAction("PagInicial");
 
-        }
     }
 }
