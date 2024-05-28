@@ -84,6 +84,14 @@ namespace PBL_Electronicrap.DAO
         {
             Tabela = "register_receiver_user";
         }
-
+        public override List<UserReceiverViewModel> Listagem()
+        {
+            List<UserReceiverViewModel> lista = new List<UserReceiverViewModel>();
+            string sql = "select * from register_receiver_user";
+            DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
+            foreach (DataRow registro in tabela.Rows)
+                lista.Add(MontaModel(registro));
+            return lista;
+        }
     }
 }
