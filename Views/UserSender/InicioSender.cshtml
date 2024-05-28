@@ -1,0 +1,80 @@
+﻿@model List<UserReceiverViewModel>
+
+@{
+    Layout = "~/Views/Shared/_LayoutSender.cshtml";
+}
+
+<table class="table table-responsive table-hover">
+        <tr>
+            <th>Nome Fantasia</th>
+            <th>Telefone</th>
+            <th>CEP</th>
+            <th>Rua</th>
+            <th>Número</th>
+            <th>Complemento</th>
+            <th>Bairro</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+            <th>Email</th>
+        </tr>
+        @foreach (var receiver in Model)
+        {
+            <tr>
+                <td>@receiver.fantasy_name</td>
+                <td>@FormatPhoneNumber(receiver.phone_number)</td>
+                <td>@FormatPostalCode(receiver.postal_code)</td>
+                <td>@receiver.address_street</td>
+                <td>@receiver.address_number</td>
+                <td>@receiver.address_complement</td>
+                <td>@receiver.address_district</td>
+                <td>@receiver.address_city</td>
+                <td>@receiver.address_state</td>
+                <td>@receiver.email</td>
+            </tr>
+        }
+    </table>
+
+    <div id="root"></div>
+
+    <!-- Adicionar a biblioteca do React -->
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+
+    <!-- Adicionar o script do Google Maps com a sua chave API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0fXt1uocVkc1-UGcJY_sY9nN8jgBXpoo"></script>
+
+    <!-- Adicionar o código do seu aplicativo React -->
+    <script src="~/js/app.js"></script>
+
+    @functions {
+    public string FormatPostalCode(string postalCode)
+    {
+        if (string.IsNullOrWhiteSpace(postalCode) || postalCode.Length != 8)
+        {
+            return postalCode; // Retorna o valor original se não for um CEP válido (8 dígitos)
+        }
+        return postalCode.Substring(0, 5) + "-" + postalCode.Substring(5, 3);
+    }
+
+    public string FormatPhoneNumber(string phoneNumber)
+    {
+        if (string.IsNullOrWhiteSpace(phoneNumber))
+        {
+            return phoneNumber; // Retorna o valor original se for nulo ou vazio
+        }
+
+        // Remove caracteres não numéricos
+        phoneNumber = new string(phoneNumber.Where(char.IsDigit).ToArray());
+
+        if (phoneNumber.Length == 10) // Formato (XX)XXXX-XXXX
+        {
+            return "(" + phoneNumber.Substring(0, 2) + ")" + phoneNumber.Substring(2, 4) + "-" + phoneNumber.Substring(6, 4);
+        }
+        else if (phoneNumber.Length == 11) // Formato (XX)XXXXX-XXXX
+        {
+            return "(" + phoneNumber.Substring(0, 2) + ")" + phoneNumber.Substring(2, 5) + "-" + phoneNumber.Substring(7, 4);
+        }
+
+        return phoneNumber; // Retorna o valor original se não for um número de telefone válido
+    }
+}
