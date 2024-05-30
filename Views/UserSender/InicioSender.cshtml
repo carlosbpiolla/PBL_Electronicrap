@@ -4,36 +4,44 @@
     Layout = "~/Views/Shared/_LayoutSender.cshtml";
 }
 
-<table class="table table-responsive table-hover">
-        <tr>
-            <th>Nome Fantasia</th>
-            <th>Telefone</th>
-            <th>CEP</th>
-            <th>Rua</th>
-            <th>Número</th>
-            <th>Complemento</th>
-            <th>Bairro</th>
-            <th>Cidade</th>
-            <th>Estado</th>
-            <th>Email</th>
-        </tr>
-        @foreach (var receiver in Model)
-        {
+<label class="control-label">Selecione a categoria de lixo eletrônico:</label>
+<form asp-action="Filtra" method="post" class="form-group">
+    <select asp-items=ViewBag.Filtros name="selectSituacao">    
+        <option value="">Selecione todos</option>
+    </select> <input type="submit" name="filtraSituacao" value="Filtra" />
+    <span name="erroFiltro" class="text-danger"></span>
+    <table class="table table-responsive table-hover">
             <tr>
-                <td>@receiver.fantasy_name</td>
-                <td>@FormatPhoneNumber(receiver.phone_number)</td>
-                <td>@FormatPostalCode(receiver.postal_code)</td>
-                <td>@receiver.address_street</td>
-                <td>@receiver.address_number</td>
-                <td>@receiver.address_complement</td>
-                <td>@receiver.address_district</td>
-                <td>@receiver.address_city</td>
-                <td>@receiver.address_state</td>
-                <td>@receiver.email</td>
+                <th>Nome Fantasia</th>
+                <th>Telefone</th>
+                <th>CEP</th>
+                <th>Rua</th>
+                <th>Número</th>
+                <th>Complemento</th>
+                <th>Bairro</th>
+                <th>Cidade</th>
+                <th>Estado</th>
+                <th>Email</th>
+                <th>Tipo Lixo Coletado</th>
             </tr>
-        }
-    </table>
-
+            @foreach (var receiver in Model)
+            {
+                <tr>
+                    <td>@receiver.fantasy_name</td>
+                    <td>@FormatPhoneNumber(receiver.phone_number)</td>
+                    <td>@FormatPostalCode(receiver.postal_code)</td>
+                    <td>@receiver.address_street</td>
+                    <td>@receiver.address_number</td>
+                    <td>@receiver.address_complement</td>
+                    <td>@receiver.address_district</td>
+                    <td>@receiver.address_city</td>
+                    <td>@receiver.address_state</td>
+                    <td>@receiver.email</td>
+                    <td>@receiver.categoriaDescricao</td>
+                </tr>
+            }
+     </table>
+</form>
     <div id="root"></div>
 
     <!-- Adicionar a biblioteca do React -->

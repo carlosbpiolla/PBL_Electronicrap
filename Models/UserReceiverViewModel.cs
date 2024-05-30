@@ -16,5 +16,9 @@
         public string address_city { get; set; }
         public string email { get; set; }
         public DateTime created_date { get; set; }
+        public int categoriaId { get; set; }
+
+        //campo Join
+        public string categoriaDescricao { get; set; }     
     }
 }

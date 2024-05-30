@@ -11,7 +11,15 @@ namespace PBL_Electronicrap.Controllers
 {
     public class UserSenderController : PadraoController<UserSenderViewModel>
     {
-        
+        public IActionResult Inicio()
+        {
+            ListaFiltros();
+            CategoriaLixoDAO dao = new CategoriaLixoDAO();
+            List<CategoriaLixoViewModel> listaCateg = dao.ListaCategorias();
+            UserReceiverDAO receiverDAO = new UserReceiverDAO();
+            List<UserReceiverViewModel> lista = receiverDAO.Listagem();
+            return View("InicioSender", lista);
+        }
 
         public override IActionResult Index()
         {
@@ -165,5 +173,28 @@ namespace PBL_Electronicrap.Controllers
             return true;
         }
 
+        public IActionResult Filtra(string selectSituacao)
+        {
+            ListaFiltros();
+            UserReceiverDAO dao = new UserReceiverDAO();
+
+            List<UserReceiverViewModel> lista = dao.ListagemFiltrada(selectSituacao);
+            return View("InicioSender", lista);
+        }
+        public void ListaFiltros()
+        {
+            List<SelectListItem> listaFiltros = new List<SelectListItem>
+            {
+                new SelectListItem("Todos", "Todos"),
+                new SelectListItem("Equipamentos Refrigeradores", "Equipamentos Refrigeradores"),
+                new SelectListItem("Computadores e Notebooks", "Computadores e Notebooks"),
+                new SelectListItem("Pilhas e Baterias", "Pilhas e Baterias"),
+                new SelectListItem("Televisores e Monitores", "Televisores e Monitores")
+
+
+            };
+
+            ViewBag.Filtros = listaFiltros;
+        }
     }
 }
