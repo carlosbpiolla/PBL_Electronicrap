@@ -33,13 +33,13 @@ namespace PBL_Electronicrap.DAO
                 address_city = registro["address_city"].ToString(),
                 address_district = registro["address_district"].ToString(),
                 email = registro["email"].ToString(),
-                created_date = Convert.ToDateTime(registro["created_date"])
+                created_date = Convert.ToDateTime(registro["created_date"]),
+                categoriaId = Convert.ToInt32(registro["categoria_lixo"])
             };
             if (registro["address_complement"] != DBNull.Value)
                 receiverModel.address_complement = registro["address_complement"].ToString();
-
             if (registro.Table.Columns.Contains("Categoria"))
-                receiverModel.categoriaId = Convert.ToInt32(registro["categoria_lixo"]);
+                receiverModel.categoriaDescricao = registro["Categoria"].ToString();
 
             return receiverModel;
         }
@@ -91,7 +91,7 @@ namespace PBL_Electronicrap.DAO
         public override List<UserReceiverViewModel> Listagem()
         {
             List<UserReceiverViewModel> lista = new List<UserReceiverViewModel>();
-            string sql = "select r.*, c.categoria_descricao from register_receiver_user r left join categorias_lixo_electronicrap c on c.categoria_id = r.categoria_lixo";
+            string sql = "select r.*, c.categoria_descricao as 'Categoria' from register_receiver_user r left join categorias_lixo_electronicrap c on c.categoria_id = r.categoria_lixo";
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
             foreach (DataRow registro in tabela.Rows)
                 lista.Add(MontaModel(registro));
@@ -100,7 +100,7 @@ namespace PBL_Electronicrap.DAO
 
         public List<UserReceiverViewModel> ListagemFiltrada(string filtraSituacao)
         {
-            string sql = "select r.*, c.categoria_descricao from register_receiver_user r left join categorias_lixo_electronicrap c on c.categoria_id = r.categoria_lixo where c.categoria_descricao = ";
+            string sql = "select r.*, c.categoria_descricao as 'Categoria' from register_receiver_user r left join categorias_lixo_electronicrap c on c.categoria_id = r.categoria_lixo where c.categoria_descricao = ";
             List<UserReceiverViewModel> lista = new List<UserReceiverViewModel>();
             if (filtraSituacao == "Todos")
                 sql += "'Todos'";
@@ -113,7 +113,7 @@ namespace PBL_Electronicrap.DAO
             else if (filtraSituacao == "Televisores e Monitores")
                 sql += "'Televisores e Monitores'";
             else
-                sql = "select r.*, c.categoria_descricao from register_receiver_user r left join categorias_lixo_electronicrap c on c.categoria_id = r.categoria_lixo";
+                sql = "select r.*, c.categoria_descricao as 'Categoria' from register_receiver_user r left join categorias_lixo_electronicrap c on c.categoria_id = r.categoria_lixo";
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
             foreach (DataRow registro in tabela.Rows)
                 lista.Add(MontaModel(registro));
