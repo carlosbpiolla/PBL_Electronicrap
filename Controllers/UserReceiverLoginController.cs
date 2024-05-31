@@ -45,7 +45,7 @@ namespace PBL_Electronicrap.Controllers
                         dao.Insert(receiverLogin);
                     else
                         dao.Update(receiverLogin);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "UserReceiver");
                 }
             }
             catch (Exception erro)

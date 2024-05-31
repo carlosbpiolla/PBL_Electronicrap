@@ -448,3 +448,31 @@ BEGIN
 
     EXEC sp_executesql @sql, N'@username NVARCHAR(MAX), @password NVARCHAR(MAX)', @username, @password;
 END
+
+
+--tabela recebimentos
+create table recebimentos_electronicrap (
+	recebimento_id int primary key not null,
+	quantidade_recebimento varchar(max) not null,
+	descricao_recebimento varchar(max) not null,
+	fk_user_sender_id int foreign key references [dbo].[register_sender_user](user_sender_id) not null,
+	fk_user_receiver_id int foreign key references [dbo].[register_receiver_user](user_receiver_id) not null,
+	fk_categoria_lixo int foreign key references [dbo].[categorias_lixo_electronicrap](categoria_id) not null
+	
+)
+
+--procedure cria recebimentos
+CREATE procedure spInsert_recebimentos_electronicrap(
+@recebimento_id int,
+@quantidade_recebimento varchar(max),
+@descricao_recebimento varchar(max),
+@fk_user_sender_id int ,
+@fk_user_receiver_id int,
+@fk_categoria_lixo int
+)
+as
+begin
+	insert into recebimentos_electronicrap (recebimento_id, quantidade_recebimento, descricao_recebimento, fk_user_sender_id, fk_user_receiver_id, fk_categoria_lixo) 
+	VALUES
+	(@recebimento_id, @quantidade_recebimento, @descricao_recebimento, @fk_user_sender_id, @fk_user_receiver_id, @fk_categoria_lixo)
+end
