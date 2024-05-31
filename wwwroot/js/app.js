@@ -9,9 +9,17 @@ function CepTable({ data }) {
             React.createElement(
                 'tr',
                 null,
-                React.createElement('th', null, 'Nome'),
-                React.createElement('th', null, 'Idade'),
-                React.createElement('th', null, 'CEP')
+                React.createElement('th', null, 'Nome Fantasia'),
+                React.createElement('th', null, 'Telefone'),
+                React.createElement('th', null, 'CEP'),
+                React.createElement('th', null, 'Rua'),
+                React.createElement('th', null, 'Número'),
+                React.createElement('th', null, 'Complemento'),
+                React.createElement('th', null, 'Bairro'),
+                React.createElement('th', null, 'Cidade'),
+                React.createElement('th', null, 'Estado'),
+                React.createElement('th', null, 'Email'),
+                React.createElement('th', null, 'Tipo Lixo Coletado')
             )
         ),
         React.createElement(
@@ -21,9 +29,17 @@ function CepTable({ data }) {
                 React.createElement(
                     'tr',
                     { key: index },
-                    React.createElement('td', null, item.nome),
-                    React.createElement('td', null, item.idade),
-                    React.createElement('td', null, item.cep)
+                    React.createElement('td', null, item.fantasy_name),
+                    React.createElement('td', null, item.phone_number),
+                    React.createElement('td', null, item.postal_code),
+                    React.createElement('td', null, item.address_street),
+                    React.createElement('td', null, item.address_number),
+                    React.createElement('td', null, item.address_complement),
+                    React.createElement('td', null, item.address_district),
+                    React.createElement('td', null, item.address_city),
+                    React.createElement('td', null, item.address_state),
+                    React.createElement('td', null, item.email),
+                    React.createElement('td', null, item.categoriaDescricao)
                 )
             )
         )
@@ -34,11 +50,7 @@ function CepTable({ data }) {
 function Content() {
     const [map, setMap] = React.useState(null);
     const [geocoder, setGeocoder] = React.useState(null);
-    const [cepList, setCepList] = React.useState([
-        { nome: 'Alice', idade: 25, cep: '01001-000' },
-        { nome: 'Bob', idade: 30, cep: '02002-000' },
-        { nome: 'Charlie', idade: 35, cep: '03003-000' }
-    ]); // Lista de dados com nome, idade e CEP
+    const [cepList, setCepList] = React.useState([]);
     const [markers, setMarkers] = React.useState([]);
     const [selectedData, setSelectedData] = React.useState(null);
 
@@ -111,14 +123,14 @@ function Content() {
 
         // Geocodificar cada CEP e adicionar um marcador no mapa
         cepList.forEach((item, index) => {
-            geocodeCep(item.cep).then(location => {
+            geocodeCep(item.postal_code).then(location => {
                 const newMarker = new google.maps.Marker({
                     map: map,
                     position: location,
                     icon: {
                         path: google.maps.SymbolPath.CIRCLE,
                         scale: 10,
-                        fillColor: '#228B22',
+                        fillColor: '#FF0000',
                         fillOpacity: 1,
                         strokeWeight: 1
                     }
@@ -136,9 +148,38 @@ function Content() {
         });
     }
 
-    // Chama a função para inicializar o mapa quando o componente for montado
+    // Função para extrair dados da tabela HTML e atualizar o estado do React
+    function extractCepDataFromTable() {
+        const table = document.getElementById('cepTable');
+        const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+        const data = Array.from(rows).map(row => {
+            const cells = row.getElementsByTagName('td');
+            return {
+                fantasy_name: cells[0].innerText,
+                phone_number: cells[1].innerText,
+                postal_code: cells[2].innerText,
+                address_street: cells[3].innerText,
+                address_number: cells[4].innerText,
+                address_complement: cells[5].innerText,
+                address_district: cells[6].innerText,
+                address_city: cells[7].innerText,
+                address_state: cells[8].innerText,
+                email: cells[9].innerText,
+                categoriaDescricao: cells[10].innerText
+            };
+        });
+        setCepList(data);
+    }
+
+    // Chama a função para inicializar o mapa e extrair dados da tabela quando o componente for montado
     React.useEffect(() => {
-        initMap();
+        // Verifica se a API do Google Maps foi carregada
+        if (typeof google !== 'undefined' && google.maps) {
+            initMap();
+            extractCepDataFromTable();
+        } else {
+            console.error('Google Maps API não foi carregada.');
+        }
     }, []);
 
     return React.createElement(
@@ -151,9 +192,17 @@ function Content() {
             'div',
             { className: 'info-window' },
             React.createElement('h3', null, 'Informações do CEP'),
-            React.createElement('p', null, `Nome: ${selectedData.nome}`),
-            React.createElement('p', null, `Idade: ${selectedData.idade}`),
-            React.createElement('p', null, `CEP: ${selectedData.cep}`),
+            React.createElement('p', null, `Nome Fantasia: ${selectedData.fantasy_name}`),
+            React.createElement('p', null, `Telefone: ${selectedData.phone_number}`),
+            React.createElement('p', null, `CEP: ${selectedData.postal_code}`),
+            React.createElement('p', null, `Rua: ${selectedData.address_street}`),
+            React.createElement('p', null, `Número: ${selectedData.address_number}`),
+            React.createElement('p', null, `Complemento: ${selectedData.address_complement}`),
+            React.createElement('p', null, `Bairro: ${selectedData.address_district}`),
+            React.createElement('p', null, `Cidade: ${selectedData.address_city}`),
+            React.createElement('p', null, `Estado: ${selectedData.address_state}`),
+            React.createElement('p', null, `Email: ${selectedData.email}`),
+            React.createElement('p', null, `Tipo Lixo Coletado: ${selectedData.categoriaDescricao}`),
             React.createElement('button', { onClick: () => setSelectedData(null) }, 'Fechar')
         )
     );

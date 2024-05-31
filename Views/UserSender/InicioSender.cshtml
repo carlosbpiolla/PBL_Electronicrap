@@ -16,42 +16,45 @@
         <option value="">Selecione todos</option>
     </select> <input type="submit" name="filtraSituacao" value="Filtra" />
     <span name="erroFiltro" class="text-danger"></span>
-    <table class="table table-responsive table-hover">
-            <tr>
-                <th>Nome Fantasia</th>
-                <th>Telefone</th>
-                <th>CEP</th>
-                <th>Rua</th>
-                <th>Número</th>
-                <th>Complemento</th>
-                <th>Bairro</th>
-                <th>Cidade</th>
-                <th>Estado</th>
-                <th>Email</th>
-                <th>Tipo Lixo Coletado</th>
-            </tr>
-            @foreach (var receiver in Model)
-            {
+    <table id="cepTable" class="table table-responsive table-hover">
+            <thead>
                 <tr>
-                    <td>@receiver.fantasy_name</td>
-                    <td>@FormatPhoneNumber(receiver.phone_number)</td>
-                    <td>@FormatPostalCode(receiver.postal_code)</td>
-                    <td>@receiver.address_street</td>
-                    <td>@receiver.address_number</td>
-                    <td>@receiver.address_complement</td>
-                    <td>@receiver.address_district</td>
-                    <td>@receiver.address_city</td>
-                    <td>@receiver.address_state</td>
-                    <td>@receiver.email</td>
-                    <td>@receiver.categoriaDescricao</td>
+                    <th>Nome Fantasia</th>
+                    <th>Telefone</th>
+                    <th>CEP</th>
+                    <th>Rua</th>
+                    <th>Número</th>
+                    <th>Complemento</th>
+                    <th>Bairro</th>
+                    <th>Cidade</th>
+                    <th>Estado</th>
+                    <th>Email</th>
+                    <th>Tipo Lixo Coletado</th>
                 </tr>
-            }
+            </thead>
+            <tbody>
+                @foreach (var receiver in Model)
+                {
+                    <tr>
+                        <td>@receiver.fantasy_name</td>
+                        <td>@FormatPhoneNumber(receiver.phone_number)</td>
+                        <td>@FormatPostalCode(receiver.postal_code)</td>
+                        <td>@receiver.address_street</td>
+                        <td>@receiver.address_number</td>
+                        <td>@receiver.address_complement</td>
+                        <td>@receiver.address_district</td>
+                        <td>@receiver.address_city</td>
+                        <td>@receiver.address_state</td>
+                        <td>@receiver.email</td>
+                        <td>@receiver.categoriaDescricao</td>
+                    </tr>
+                }
+            </tbody>
      </table>
 </form>
 <body>
     <div id="root"></div>
 
-    <!-- Adicionar a biblioteca do React -->
     <!-- Adicionar a biblioteca do React -->
     <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
