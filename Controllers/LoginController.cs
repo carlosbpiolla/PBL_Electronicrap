@@ -45,9 +45,9 @@ namespace PBL_Electronicrap.Controllers
                     else
                     {
                         if (model.userType == "sender")
-                            return View("PagInicialSender");
+                            return View("PagInicialSender", model);
                         else
-                            return View("PagInicialReceiver");
+                            return View("PagInicialReceiver", model);
                     }
                         
                 }

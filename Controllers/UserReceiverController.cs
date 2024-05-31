@@ -22,7 +22,7 @@ namespace PBL_Electronicrap.Controllers
             ViewBag.Operacao = "I";
 
             UserReceiverViewModel userReceiver = new UserReceiverViewModel();
-
+            PreparaListaCategoriasParaCombo();
             UserReceiverDAO receiverDAO = new UserReceiverDAO();
             userReceiver.id = receiverDAO.ProximoId();
             userReceiver.created_date = DateTime.Today;
@@ -37,6 +37,7 @@ namespace PBL_Electronicrap.Controllers
                 if (ModelState.IsValid == false)
                 {
                     ViewBag.Operacao = Operacao;
+                    PreparaListaCategoriasParaCombo();
                     return View("Form", userReceiver);
                 }
                 else
@@ -58,6 +59,27 @@ namespace PBL_Electronicrap.Controllers
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
+
+        public IActionResult Update(string username)
+        {
+            try
+            {
+                ViewBag.Operacao = "A";
+                UserReceiverDAO dao = new UserReceiverDAO();
+                UserReceiverViewModel receiver = dao.ConsultaUsername(username);
+
+                PreparaListaCategoriasParaCombo();
+                if (receiver == null)
+                    return RedirectToAction("index");
+                else
+                    return View("Form", receiver);
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.ToString()));
+            }
+        }
+
         private new void ValidaDados(UserReceiverViewModel userReceiver, string operacao)
         {
             ModelState.Clear(); // limpa os erros criados automaticamente pelo Asp.net (que podem estar com msg em inglês)
@@ -142,6 +164,20 @@ namespace PBL_Electronicrap.Controllers
             return true;
         }
 
-        
+        private void PreparaListaCategoriasParaCombo()
+        {
+            CategoriaLixoDAO categoriaDAO = new CategoriaLixoDAO();
+            var categorias = categoriaDAO.ListaCategorias();
+            List<SelectListItem> listaCategorias = new List<SelectListItem>
+            {
+                new SelectListItem("Selecione uma categoria...", "0")
+            };
+            foreach (var categ in categorias)
+            {
+                SelectListItem item = new SelectListItem(categ.categoria, categ.id.ToString());
+                listaCategorias.Add(item);
+            }
+            ViewBag.Categorias = listaCategorias;
+        }
     }
 }

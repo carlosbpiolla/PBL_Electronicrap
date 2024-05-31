@@ -68,6 +68,24 @@ namespace PBL_Electronicrap.Controllers
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
+        public IActionResult Update(string username)
+        {
+            try
+            {
+                ViewBag.Operacao = "A";
+                UserSenderDAO dao = new UserSenderDAO();
+                UserSenderViewModel sender = dao.ConsultaUsername(username);
+
+                if (sender == null)
+                    return RedirectToAction("index");
+                else
+                    return View("Form", sender);
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.ToString()));
+            }
+        }
         private new void ValidaDados(UserSenderViewModel userSender, string operacao)
         {
             ModelState.Clear(); // limpa os erros criados automaticamente pelo Asp.net (que podem estar com msg em inglês)

@@ -74,7 +74,7 @@ namespace PBL_Electronicrap.DAO
             parametros[12] = new SqlParameter("address_state", model.address_state.ToString());
             parametros[13] = new SqlParameter("email", model.email.ToString());
             parametros[14] = new SqlParameter("created_date", Convert.ToDateTime(model.created_date));
-            parametros[15] = new SqlParameter("categoriaId", Convert.ToDateTime(model.created_date));
+            parametros[15] = new SqlParameter("categoria_lixo", Convert.ToInt32(model.categoriaId));
                 
             
             return parametros;
