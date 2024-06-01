@@ -127,7 +127,7 @@ function Content() {
                     icon: {
                         path: google.maps.SymbolPath.CIRCLE,
                         scale: 10,
-                        fillColor: '#FF0000',
+                        fillColor: '#0000CD',
                         fillOpacity: 1,
                         strokeWeight: 1
                     }

@@ -12,9 +12,16 @@ namespace PBL_Electronicrap.Controllers
 {
     public class RecebimentoController : PadraoController<RecebimentoViewModel>
     {
-        public override IActionResult Index()
+        public IActionResult Inicio(string username)
         {
-            return View("Index");
+            UserReceiverDAO dao = new UserReceiverDAO();
+            UserReceiverViewModel receiver = dao.ConsultaUsername(username);
+
+
+
+            RecebimentoDAO recebDAO = new RecebimentoDAO();
+            List<RecebimentoViewModel> lista = recebDAO.ListagemRecebimentos(receiver.id);
+            return View("Index", lista);
         }
 
         public override IActionResult Create()

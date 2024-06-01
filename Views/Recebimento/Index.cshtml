@@ -1,0 +1,33 @@
+﻿@model List<RecebimentoViewModel>
+@{
+    Layout = "~/Views/Shared/_LayoutReceiver.cshtml";
+}
+<h4>Insira um novo recibmento aqui: </h4><a href="/Recebimento/Create" class="btn btn-success">Registrar</a>
+<h2> Histórico Recebimentos</h2>
+<table class="table table-responsive table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome Descartador</th>
+                    <th>CPF Descartador</th>
+                    <th>Quantidade</th>
+                    <th>Descrição</th>
+                    <th>Tipo Lixo Descartado</th>
+                    <th>Data Recebimento</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var recebimento in Model)
+                {
+                    <tr>
+                        <td>@recebimento.id</td>
+                        <td>@recebimento.sender_full_name</td>
+                        <td>@recebimento.sender_cpf</td>
+                        <td>@recebimento.quantidade</td>
+                        <td>@recebimento.descricao</td>
+                        <td>@recebimento.categoria_lixo_descricao</td>
+                        <td>@recebimento.data</td>
+                    </tr>
+                }
+            </tbody>
+     </table>
