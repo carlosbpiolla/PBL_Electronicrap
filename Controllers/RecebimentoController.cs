@@ -17,14 +17,14 @@ namespace PBL_Electronicrap.Controllers
             UserReceiverDAO dao = new UserReceiverDAO();
             UserReceiverViewModel receiver = dao.ConsultaUsername(username);
 
-
+            ViewBag.receiverId = receiver.id;
 
             RecebimentoDAO recebDAO = new RecebimentoDAO();
             List<RecebimentoViewModel> lista = recebDAO.ListagemRecebimentos(receiver.id);
             return View("Index", lista);
         }
 
-        public override IActionResult Create()
+        public IActionResult Cria(int receiverId)
         {
             ViewBag.Operacao = "I";
 
@@ -32,7 +32,7 @@ namespace PBL_Electronicrap.Controllers
             PreparaListaCategoriasParaCombo();
             RecebimentoDAO recebimentoDAO = new RecebimentoDAO();
             recebimento.id = recebimentoDAO.ProximoId();
-
+            recebimento.receiver_id = receiverId;
             return View("Form", recebimento);
         }
 

@@ -2,7 +2,7 @@
 @{
     Layout = "~/Views/Shared/_LayoutReceiver.cshtml";
 }
-<h4>Insira um novo recibmento aqui: </h4><a href="/Recebimento/Create" class="btn btn-success">Registrar</a>
+<h4>Insira um novo recibmento aqui: </h4><a href="/Recebimento/Cria?receiverId=@ViewBag.receiverId" class="btn btn-success">Registrar</a>
 <h2> Histórico Recebimentos</h2>
 <table class="table table-responsive table-hover">
             <thead>

@@ -5,3 +5,9 @@
 }
 
 kkkkk
+<label for="Id" class="control-label">receiverId</label>
+        @if (ViewBag.Operacao == "I" || ViewBag.Operacao == "A")
+            {
+                <input asp-for=receiver_id id="id" class="form-control" readonly/>
+            }
+        <span asp-validation-for="id" class="text-danger"></span>
