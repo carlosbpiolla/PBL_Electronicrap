@@ -3,7 +3,26 @@
 *@
 @{
 }
-<div class="text-center">
-    <a href="/UserSender/Create" class="btn btn-success">Novo Registro sender</a>
-    <a href="/UserReceiver/Create" class="btn btn-success">Novo Registro receiver</a>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divisão de Página</title>
+    <link rel="stylesheet" href="cria_conta.css">
+</head>
+<body>
+    <div class="container">
+        <div class="half-page left" onclick="location.href='/UserSender/Create'">
+            <div class="overlay">
+                <span>Novo Registro Sender</span>
+            </div>
+        </div>
+        <div class="half-page right" onclick="location.href='/UserReceiver/Create'">
+            <div class="overlay">
+                <span>Novo Registro Receiver</span> 
+            </div>
+        </div>
+    </div>
+</body>
+</html>

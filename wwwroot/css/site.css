@@ -1,7 +1,5 @@
-html {
-  font-size: 14px;
-}
 
+/*
 @media (min-width: 768px) {
   html {
     font-size: 16px;
@@ -15,4 +13,50 @@ html {
 
 body {
   margin-bottom: 60px;
+}
+html {
+    font-size: 14px;
+}
+*/
+/* Estilos gerais */
+body {
+    background-color: #f3f7f0;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Estilos do navbar */
+.navbar {
+    background-color: #2b3f2c;
+}
+
+.navbar-brand, .nav-link {
+    color: #e8f5e9 !important;
+}
+
+    .nav-link:hover {
+        color: #a5d6a7 !important;
+    }
+
+/* Estilos do footer */
+.footer {
+    background-color: #2b3f2c;
+    color: #e8f5e9;
+}
+
+    .footer a {
+        color: #a5d6a7 !important;
+    }
+
+/* Estilos do container */
+.container {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Transições */
+.header, .navbar, .footer, .container {
+    transition: all 0.3s ease;
 }

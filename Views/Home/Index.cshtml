@@ -2,7 +2,122 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- load stylesheets -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">  <!-- Google web font "Open Sans" -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">                <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/css/Home/css/bootstrap.min.css">                                      <!-- Bootstrap style -->
+    <link rel="stylesheet" type="text/css" href="~/css/Home/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="~/css/Home/slick/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="~/css/Home/css/datepicker.css"/>
+    <link rel="stylesheet" href="~/css/Home/css/tooplate-style.css">                                   <!-- Templatemo style -->
 
+</head> 
+    <body>
+        <div class="tm-main-content" id="top">
+            <div class="tm-section tm-bg-img" id="tm-section-1">           
+            </div>
+            
+            <div class="tm-section-2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col text-center">
+                            <h2 class="tm-section-title">Descarte seu lixo eletrônico no lugar correto!</h2>
+                            <p class="tm-color-white tm-section-subtitle">Comece agora</p>
+                            <a href="#" class="tm-color-white tm-btn-white-bordered">CRIAR CONTA</a>
+                        </div>                
+                    </div>
+                </div>        
+            </div>
+            
+            <div class="tm-section tm-position-relative">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" class="tm-section-down-arrow">
+                    <polygon fill="#2b3f2c" points="0,0  100,0  50,60"></polygon>                   
+                </svg> 
+                <div class="container tm-pt-5 tm-pb-4">
+                    <div class="row text-center">
+                        <article class="col-sm-12 col-md-4 col-lg-4 col-xl-4 tm-article">                            
+                            <i class="fa-solid fa-recycle tm-fa-6x tm-color-primary tm-margin-b-20"></i>
+                            <h3 class="tm-color-primary tm-article-title-1">Reciclagem</h3>
+                            <p>Se descartado no local correto o lixo eletrônico pode dar vida a novos produtos de forma sustentável</p>
+                        </article>
+                        <article class="col-sm-12 col-md-4 col-lg-4 col-xl-4 tm-article">                            
+                            <i class="fa-solid fa-car-battery tm-fa-6x tm-color-primary tm-margin-b-20"></i>
+                            <h3 class="tm-color-primary tm-article-title-1">Lixo eletrônico</h3>
+                            <p>Segundo a pesquisa de E-Waste Monitor,cada pessoa no planeta gera cerca de 7,3 quilos de lixo eletrônico por ano</p>
+                        </article>
+                        <article class="col-sm-12 col-md-4 col-lg-4 col-xl-4 tm-article">                           
+                            <i class="fa-solid fa-triangle-exclamation tm-fa-6x tm-color-primary tm-margin-b-20"></i>
+                            <h3 class="tm-color-primary tm-article-title-1">Danos</h3>
+                            <p>O descarte incorreto de E-lixos gera danos ao meio ambiente através da contaminação de solos, lençóis freáticos e os organismos da fauna e da flora.</p>
+                        </article>
+                    </div>        
+                </div>
+            </div>
+                <div class="tm-section tm-section-pad tm-bg-img" id="tm-section-5">                                                        
+                    <div class="container ie-h-align-center-fix">
+                        <div class="row tm-flex-align-center">
+                            <div class="col-xs-12 col-md-12 col-lg-3 col-xl-3 tm-media-title-container">
+                                <h2 class="text-uppercase tm-section-title-2">NOSSOS</h2>
+                                <h3 class="tm-color-primary tm-font-semibold tm-section-subtitle-2">PARCEIROS</h3>
+                            </div>
+                            <div class="col-xs-12 col-md-12 col-lg-9 col-xl-9 mt-0 mt-sm-3">
+                                <div class="ml-auto tm-bg-white-shadow tm-pad tm-media-container">
+                                    <article class="media tm-margin-b-20 tm-media-1">
+                                        <img src="~/css/Home/img/img-03.jpg" alt="Image">
+                                        <div class="media-body tm-media-body-1 tm-media-body-v-center">
+                                            <h3 class="tm-font-semibold tm-color-primary tm-article-title-3">Suspendisse vel est libero sem phasellus ac laoreet</h3>
+                                            <p>Vivamus eget tellus ornare, sollicitudin quam id, dictum nulla. Phasellus finibus rhoncus justo, tempus eleifend neque dictum ac. Aenean metus leo, consectetur non. 
+                                            <br><br>
+											Etiam aliquam arcu at mauris consectetur scelerisque. Integer elementum justo in orci facilisis ultricies. Pellentesque at velit ante. Duis scelerisque metus vel felis porttitor gravida.</p>
+                                        </div>                                
+                                    </article>
+                                    <article class="media tm-margin-b-20 tm-media-1">
+                                        <img src="~/css/Home/img/img-04.jpg" alt="Image">
+                                        <div class="media-body tm-media-body-1 tm-media-body-v-center">
+                                            <h3 class="tm-font-semibold tm-article-title-3">Suspendisse vel est libero sem phasellus ac laoreet</h3>
+                                            <p>Duis accumsan sagittis tortor in ultrices. Praesent tortor ante, fringilla ac nibh porttitor, fermentum commodo nulla.</p>
+                                            <a href="#" class="text-uppercase tm-color-primary tm-font-semibold">Continue reading...</a>
+                                        </div>                                
+                                    </article>
+                                    <article class="media tm-margin-b-20 tm-media-1">
+                                        <img src="~/css/Home/img/img-05.jpg" alt="Image">
+                                        <div class="media-body tm-media-body-1 tm-media-body-v-center">
+                                            <h3 class="tm-font-semibold tm-article-title-3">Faucibus dolor ligula nisl metus auctor aliquet</h3>
+                                            <p>Nunc in felis aliquet metus luctus iaculis vel et nisi. Nulla venenatis nisl orci, laoreet ultricies massa tristique id.</p>
+                                            <a href="#" class="text-uppercase tm-color-primary tm-font-semibold">Continue reading...</a>
+                                        </div>                                
+                                    </article>
+                                    <article class="media tm-margin-b-20 tm-media-1">
+                                        <img src="~/css/Home/img/img-05.jpg" alt="Image">
+                                        <div class="media-body tm-media-body-1 tm-media-body-v-center">
+                                            <h3 class="tm-font-semibold tm-article-title-3">Faucibus dolor ligula nisl metus auctor aliquet</h3>
+                                            <p>Nunc in felis aliquet metus luctus iaculis vel et nisi. Nulla venenatis nisl orci, laoreet ultricies massa tristique id.</p>
+                                            <a href="#" class="text-uppercase tm-color-primary tm-font-semibold">Continue reading...</a>
+                                        </div>                                
+                                    </article>
+                                </div>                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>           
+            <div class="tm-section tm-section-pad tm-bg-img tm-position-relative" id="tm-section-6">
+            </div>
+        </div>
+        
+        <!-- load JS files -->
+        <script src="~/css/Home/js/jquery-1.11.3.min.js"></script>             <!-- jQuery (https://jquery.com/download/) -->
+        <script src="~/css/Home/js/popper.min.js"></script>                    <!-- https://popper.js.org/ -->       
+        <script src="~/css/Home/js/bootstrap.min.js"></script>                 <!-- https://getbootstrap.com/ -->
+        <script src="~/css/Home/js/datepicker.min.js"></script>                <!-- https://github.com/qodesmith/datepicker -->
+        <script src="~/css/Home/js/jquery.singlePageNav.min.js"></script>      <!-- Single Page Nav (https://github.com/ChrisWojcik/single-page-nav) -->
+        <script src="~/css/Home/slick/slick.min.js"></script>                  <!-- http://kenwheeler.github.io/slick/ -->
+               
+</body>
+</html>
