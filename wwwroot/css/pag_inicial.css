@@ -1,0 +1,90 @@
+/* Estilo global */
+body {
+    background-color: #f3f7f0;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+h2 {
+    text-align: center;
+    color: #2b3f2c;
+    font-size: 28px;
+    margin-bottom: 30px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+a.nav-link {
+    color: #2b3f2c;
+    font-size: 18px;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    padding: 15px 30px;
+    border: 2px solid #2b3f2c;
+    border-radius: 4px;
+}
+
+    a.nav-link:hover {
+        color: #fff;
+        background-color: #2b3f2c;
+        transform: scale(1.05);
+    }
+
+    a.nav-link:active {
+        transform: scale(1);
+    }
+
+    a.nav-link.text-dark {
+        color: #324d34;
+    }
+
+        a.nav-link.text-dark:hover {
+            color: #fff;
+            background-color: #324d34;
+        }
+
+@media (max-width: 600px) {
+    h2 {
+        font-size: 24px;
+    }
+
+    a.nav-link {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+}

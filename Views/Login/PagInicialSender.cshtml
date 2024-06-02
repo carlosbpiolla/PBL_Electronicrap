@@ -1,8 +1,12 @@
 ﻿@model LoginViewModel
 
 @{
-    Layout = "~/Views/Shared/_LayoutSender.cshtml";
+    Layout = null;
 }
-<h2> login efetuado - Sender!</h2>
-<a class="nav-link text-dark" asp-area="" asp-controller="UserSender" asp-action="Inicio">Veja os recebedores na sua região</a>
-<a class="nav-link text-dark" href="/UserSender/Update?username=@Model.username">edite seus dados</a>
+<link rel="stylesheet" href="~/css/pag_inicial.css">
+
+<div class="container">
+    <h2>Login efetuado - Sender!</h2>
+    <a class="nav-link text-dark" asp-area="" asp-controller="UserSender" asp-action="Inicio">Veja os recebedores na sua região</a>
+    <a class="nav-link text-dark" href="/UserSender/Update?username=@Model.username">edite seus dados</a>
+</div> 

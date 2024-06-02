@@ -1,13 +1,23 @@
 ﻿@model RecebimentoViewModel
 
 @{
-    Layout = "~/Views/Shared/_LayoutReceiver.cshtml";
+    Layout = null;
 }
-
-kkkkk
-<label for="Id" class="control-label">receiverId</label>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/recebimento.css">
+</head>
+<body>
+    <div class="container">
+        <label for="id" class="control-label">receiverId</label>
         @if (ViewBag.Operacao == "I" || ViewBag.Operacao == "A")
-            {
-                <input asp-for=receiver_id id="id" class="form-control" readonly/>
-            }
+        {
+            <input asp-for="receiver_id" id="id" class="form-control" readonly />
+        }
         <span asp-validation-for="id" class="text-danger"></span>
+    </div>
+</body>
+</html>

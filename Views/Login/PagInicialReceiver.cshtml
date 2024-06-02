@@ -1,7 +1,11 @@
 ﻿@model LoginViewModel
 @{
-    Layout = "~/Views/Shared/_LayoutReceiver.cshtml";
+    Layout = null;
 }
-<h2> login efetuado - Receiver!</h2> 
-<a class="nav-link text-dark" href="/UserReceiver/Update?username=@Model.username">edite seus dados</a>
-<a class="nav-link text-dark" href="/Recebimento/Inicio?username=@Model.username">Veja seus ultimos recebimentos</a>
+
+<link rel="stylesheet" href="~/css/pag_inicial.css">
+<div class="container">
+    <h2>Login efetuado - Receiver!</h2> 
+    <a class="nav-link" href="/UserReceiver/Update?username=@Model.username">Edite seus dados</a>
+    <a class="nav-link" href="/Recebimento/Inicio?username=@Model.username">Veja seus ultimos recebimentos</a>
+</div>
