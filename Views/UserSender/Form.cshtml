@@ -5,6 +5,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 <link rel="stylesheet" href="~/css/forms_us.css">
+<link rel="stylesheet" href="~/css/hd_ft.css">
 
 <!-- MASCARA CEP-->
 <script>
@@ -111,18 +112,26 @@
             input.value = input.value.toLowerCase();
         }
 </script>
-
+<header class="site-header">
+    <div class="container">
+        <nav>
+            <a class="logo" href="#">
+                <img src="~/css/logo_electronicrap.png" alt="Electronicrap Logo" style="height: 40px;">
+            </a>
+            <ul class="menu">
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="PagCriaConta">Crie sua conta!</a></li>
+                <li><a asp-area="" asp-controller="Login" asp-action="PagLogin">Entre</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 <div class="form-container">
     <h2>Cadastro de Usuario Sender</h2>
     <form action="Save" method="post" class="form-group">
         <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
-        <label for="Id" class="control-label">Id</label>
-        @if (ViewBag.Operacao == "I" || ViewBag.Operacao == "A")
-            {
-                <input asp-for=id id="id" class="form-control" readonly/>
-            }
-        <span asp-validation-for="id" class="text-danger"></span>
-
+        
         <div class="form-group">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" oninput="toLowerCase(this)">
@@ -183,11 +192,6 @@
             <input type="text" id="address_state" name="address_state">
             <span asp-validation-for="address_state" class="text-danger"></span>
         </div>
-        
-        <div class="form-group">
-            <label for="created_time">Data Criação Perfil:</label>
-            <input asp-for=created_date type="date" id="created_date" class="form-control" name="created_date" readonly>
-        </div>
         <div class="form-group">
             <button type="submit">Enviar</button>
         </div>
@@ -195,3 +199,11 @@
         
     </form>
 </div>
+<footer class="site-footer">
+    <div class="container">
+        <p>&copy; 2024 ec8-electronicrap.azurewebsites.net. Todos os direitos reservados.</p>
+        <a href="https://github.com/carlosbpiolla/PBL_Electronicap" target="_blank">
+            <img src="~/css/logo_git.png" alt="GitHub">
+        </a>
+    </div>
+</footer>

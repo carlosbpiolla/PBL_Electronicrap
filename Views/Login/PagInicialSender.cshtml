@@ -4,9 +4,33 @@
     Layout = null;
 }
 <link rel="stylesheet" href="~/css/pag_inicial.css">
+<link rel="stylesheet" href="~/css/hd_ft.css">
 
+<header class="site-header">
+    <div class="container">
+        <nav>
+            <a class="logo" href="#">
+                <img src="~/css/logo_electronicrap.png" alt="Electronicrap Logo" style="height: 40px;">
+            </a>
+            <ul class="menu">
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="PagCriaConta">Crie sua conta!</a></li>
+                <li><a asp-area="" asp-controller="Login" asp-action="PagLogin">Entre</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 <div class="container">
     <h2>Login efetuado - Sender!</h2>
     <a class="nav-link text-dark" asp-area="" asp-controller="UserSender" asp-action="Inicio">Veja os recebedores na sua região</a>
     <a class="nav-link text-dark" href="/UserSender/Update?username=@Model.username">edite seus dados</a>
 </div> 
+<footer class="site-footer">
+    <div class="container">
+        <p>&copy; 2024 ec8-electronicrap.azurewebsites.net. Todos os direitos reservados.</p>
+        <a href="https://github.com/carlosbpiolla/PBL_Electronicap" target="_blank">
+            <img src="~/css/logo_git.png" alt="GitHub">
+        </a>
+    </div>
+</footer>

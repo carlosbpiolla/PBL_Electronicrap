@@ -9,7 +9,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/css/us_styles.css">
+    <link rel="stylesheet" href="~/css/hd_ft.css">
+
 </head>
+<header class="site-header">
+    <div class="container">
+        <nav>
+            <a class="logo" href="#">
+                <img src="~/css/logo_electronicrap.png" alt="Electronicrap Logo" style="height: 40px;">
+            </a>
+            <ul class="menu">
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="PagCriaConta">Crie sua conta!</a></li>
+                <li><a asp-area="" asp-controller="Login" asp-action="PagLogin">Entre</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 <label class="control-label">Selecione a categoria de lixo eletrônico:</label>
 <form asp-action="Filtra" method="post" class="form-group">
     <select asp-items=ViewBag.Filtros name="selectSituacao">    
@@ -65,6 +82,14 @@
     <!-- Adicionar o código do seu aplicativo React -->
     <script src="~/js/app.js"></script>
 </body>
+<footer class="site-footer">
+    <div class="container">
+        <p>&copy; 2024 ec8-electronicrap.azurewebsites.net. Todos os direitos reservados.</p>
+        <a href="www.https://github.com/carlosbpiolla/PBL_Electronicap" target="_blank">
+            <img src="~/css/logo_git.png" alt="GitHub">
+        </a>
+    </div>
+</footer>
 </html>
 
     @functions {

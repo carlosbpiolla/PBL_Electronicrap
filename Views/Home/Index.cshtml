@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout =null;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -16,8 +16,24 @@
     <link rel="stylesheet" type="text/css" href="~/css/Home/slick/slick-theme.css"/>
     <link rel="stylesheet" type="text/css" href="~/css/Home/css/datepicker.css"/>
     <link rel="stylesheet" href="~/css/Home/css/tooplate-style.css">                                   <!-- Templatemo style -->
+    <link rel="stylesheet" href="~/css/hd_ft.css">
 
-</head> 
+</head>
+<header class="site-header">
+    <div class="container">
+        <nav>
+            <a class="logo" href="#">
+                <img src="~/css/logo_electronicrap.png" alt="Electronicrap Logo" style="height: 40px;">
+            </a>
+            <ul class="menu">
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="PagCriaConta">Crie sua conta!</a></li>
+                <li><a asp-area="" asp-controller="Login" asp-action="PagLogin">Entre</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
     <body>
         <div class="tm-main-content" id="top">
             <div class="tm-section tm-bg-img" id="tm-section-1">           
@@ -120,4 +136,12 @@
         <script src="~/css/Home/slick/slick.min.js"></script>                  <!-- http://kenwheeler.github.io/slick/ -->
                
 </body>
+<footer class="site-footer">
+    <div class="container">
+        <p>&copy; 2024 ec8-electronicrap.azurewebsites.net. Todos os direitos reservados.</p>
+        <a href="https://github.com/carlosbpiolla/PBL_Electronicap" target="_blank">
+            <img src="~/css/logo_git.png" alt="GitHub">
+        </a>
+    </div>
+</footer>
 </html>

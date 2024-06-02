@@ -6,9 +6,34 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start; /* Ajusta o alinhamento no topo */
     align-items: flex-start; /* Ajusta o alinhamento no topo */
+    flex-direction: column; /* Garante que os itens fiquem em coluna */
     min-height: 100vh;
+}
+
+/* Estilos do Header */
+.site-header {
+    background-color: #2b3f2c;
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Garante que o cabeçalho fique acima de outros conteúdos, se houver */
+}
+
+/* Estilos do Footer */
+.site-footer {
+    background-color: #2b3f2c;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 1000; /* Mesma razão do z-index para o rodapé */
 }
 
 .form-container {
@@ -21,6 +46,13 @@ body {
     box-sizing: border-box;
     animation: fadeIn 0.5s ease-in-out;
     overflow-y: auto; /* Adiciona barra de rolagem vertical quando necessário */
+    margin-top: 100px; /* Ajusta o espaço abaixo do cabeçalho */
+    margin-bottom: 100px; /* Ajusta o espaço acima do rodapé */
+    margin-left: auto; /* Centraliza horizontalmente */
+    margin-right: auto; /* Centraliza horizontalmente */
+    display: flex; /* Para alinhar itens no centro */
+    justify-content: center; /* Para alinhar itens no centro */
+    align-items: center; /* Para alinhar itens no centro */
 }
 
 /* Adiciona uma classe de contêiner para ajustes em telas pequenas */
@@ -30,9 +62,10 @@ body {
         border-radius: 0; /* Remove o arredondamento da borda */
         box-shadow: none; /* Remove a sombra */
         overflow: auto; /* Adiciona barra de rolagem para conteúdo grande */
+        margin-top: 80px; /* Ajusta o espaço abaixo do cabeçalho */
+        margin-bottom: 80px; /* Ajusta o espaço acima do rodapé */
     }
 }
-
 
 @keyframes fadeIn {
     from {

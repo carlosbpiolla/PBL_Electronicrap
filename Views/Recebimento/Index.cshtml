@@ -8,7 +8,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/css/recebimento.css">
+    <link rel="stylesheet" href="~/css/hd_ft.css">
+
 </head>
+<header class="site-header">
+    <div class="container">
+        <nav>
+            <a class="logo" href="#">
+                <img src="~/css/logo_electronicrap.png" alt="Electronicrap Logo" style="height: 40px;">
+            </a>
+            <ul class="menu">
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="PagCriaConta">Crie sua conta!</a></li>
+                <li><a asp-area="" asp-controller="Login" asp-action="PagLogin">Entre</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 <body>
     <div class="container">
         <h4>Insira um novo recebimento aqui:</h4>
@@ -34,7 +51,7 @@
                     <tr>
                         <td>@recebimento.id</td>
                         <td>@recebimento.sender_full_name</td>
-                        <td>@recebimento.sender_cpf</td>
+                        <td>@FormatCPF(recebimento.sender_cpf)</td>
                         <td>@recebimento.quantidade</td>
                         <td>@recebimento.descricao</td>
                         <td>@recebimento.categoria_lixo_descricao</td>
@@ -45,5 +62,24 @@
         </table>
     </div>
 </body>
+<footer class="site-footer">
+    <div class="container">
+        <p>&copy; 2024 ec8-electronicrap.azurewebsites.net. Todos os direitos reservados.</p>
+        <a href="https://github.com/carlosbpiolla/PBL_Electronicap" target="_blank">
+            <img src="~/css/logo_git.png" alt="GitHub">
+        </a>
+    </div>
+</footer>
 </html>
 
+@functions{
+    public string FormatCPF(string cpf)
+{
+    if (string.IsNullOrWhiteSpace(cpf) || cpf.Length != 11)
+    {
+        return cpf; // Retorna o valor original se não for um CPF válido (11 dígitos)
+    }
+    return cpf.Substring(0, 3) + "." + cpf.Substring(3, 3) + "." + cpf.Substring(6, 3) + "-" + cpf.Substring(9, 2);
+}
+
+}

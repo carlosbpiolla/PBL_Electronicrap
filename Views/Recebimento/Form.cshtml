@@ -3,21 +3,84 @@
 @{
     Layout = null;
 }
+<!-- MASCARA CPF-->
+<script>
+    $(document).ready(function() { 
+      $('#cpf').on('input', function() {
+        var cpf = $(this).val();
+        // Remover todos os caracteres que não são números
+        cpf = cpf.replace(/\D/g, '');
+        // Adicionar a máscara
+        cpf = cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2}).*/, '$1.$2.$3-$4');
+        $(this).val(cpf);
+      });
+    });
+</script>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/css/recebimento.css">
+    <link rel="stylesheet" href="~/css/hd_ft.css">
+
 </head>
+<header class="site-header">
+    <div class="container">
+        <nav>
+            <a class="logo" href="#">
+                <img src="~/css/logo_electronicrap.png" alt="Electronicrap Logo" style="height: 40px;">
+            </a>
+            <ul class="menu">
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="PagCriaConta">Crie sua conta!</a></li>
+                <li><a asp-area="" asp-controller="Login" asp-action="PagLogin">Entre</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 <body>
     <div class="container">
-        <label for="id" class="control-label">receiverId</label>
-        @if (ViewBag.Operacao == "I" || ViewBag.Operacao == "A")
-        {
-            <input asp-for="receiver_id" id="id" class="form-control" readonly />
-        }
-        <span asp-validation-for="id" class="text-danger"></span>
+        <div class="form-group">
+            <label for="full_name">Nome do Descartador:</label>
+            <input type="text" asp-for=sender_full_name id="sender_full_name" name="sender_full_name">
+            <span asp-validation-for="sender_full_name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="sender_cpf">CPF do Descartador:</label>
+            <input type="text" asp-for=sender_cpf id="sender_cpf" name="cpf" maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="XXX.XXX.XXX-XX" title="Digite um CPF válido">
+            <span asp-validation-for="sender_cpf" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="quantidade">Quantidade Descartada</label>
+            <input type="text" asp-for=quantidade id="quantidade" name="quantidade">
+            <span asp-validation-for="quantidade" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="descricao">Descrição dos Itens:</label>
+            <input type="text" asp-for=descricao id="sender_full_name" name="sender_full_name">
+            <span asp-validation-for="descricao" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+           <label for="categoria_lixo" class="control-label">Categoria do Lixo Recebido</label>
+            <select asp-for="categoria_lixo" asp-items="ViewBag.Categorias" class="form-control"> </select>
+            <span asp-validation-for="categoria_lixo" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="data">Data do Descarte:</label>
+            <input type="text" asp-for=data id="data" name="data">
+            <span asp-validation-for="data" class="text-danger"></span>
+        </div>
     </div>
+
 </body>
+<footer class="site-footer">
+    <div class="container">
+        <p>&copy; 2024 ec8-electronicrap.azurewebsites.net. Todos os direitos reservados.</p>
+        <a href="https://github.com/carlosbpiolla/PBL_Electronicap" target="_blank">
+            <img src="~/css/logo_git.png" alt="GitHub">
+        </a>
+    </div>
+</footer>
 </html>
