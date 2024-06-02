@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,12 +24,12 @@
             </div>
             
             <div class="tm-section-2">
-                <div class="container">
+                <div>
                     <div class="row">
                         <div class="col text-center">
                             <h2 class="tm-section-title">Descarte seu lixo eletrônico no lugar correto!</h2>
                             <p class="tm-color-white tm-section-subtitle">Comece agora</p>
-                            <a href="#" class="tm-color-white tm-btn-white-bordered">CRIAR CONTA</a>
+                            <a asp-area="" asp-controller="Home" asp-action="PagCriaConta" class="tm-color-white tm-btn-white-bordered">CRIAR CONTA</a>
                         </div>                
                     </div>
                 </div>        
