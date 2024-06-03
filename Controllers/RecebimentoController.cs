@@ -32,7 +32,8 @@ namespace PBL_Electronicrap.Controllers
             PreparaListaCategoriasParaCombo();
             RecebimentoDAO recebimentoDAO = new RecebimentoDAO();
             recebimento.id = recebimentoDAO.ProximoId();
-            recebimento.receiver_id = receiverId;
+            ViewBag.id = recebimento.id;
+            ViewBag.receiver_id = receiverId;
             return View("Form", recebimento);
         }
 
@@ -40,7 +41,8 @@ namespace PBL_Electronicrap.Controllers
         {
             try
             {
-                //ValidaDados(recebimento, Operacao);
+                ValidaDados(recebimento, Operacao);
+               
                 if (ModelState.IsValid == false)
                 {
                     ViewBag.Operacao = Operacao;
@@ -49,15 +51,25 @@ namespace PBL_Electronicrap.Controllers
                 }
                 else
                 {
+                    UserSenderDAO senderDAO = new UserSenderDAO();
+                    UserSenderViewModel sender = senderDAO.Consulta_CNPJ_CPF(recebimento.sender_cpf);
+                    recebimento.sender_id = sender.id;
+                    UserReceiverDAO receiverDAO = new UserReceiverDAO();
+                    UserReceiverViewModel receiver = receiverDAO.Consulta(recebimento.receiver_id);
+                    string username_param = receiver.username;
                     RecebimentoDAO dao = new RecebimentoDAO();
                     if (Operacao == "I")
                     {
                         dao.Insert(recebimento);
-                        return RedirectToAction("Inicio");
+                        return RedirectToAction("Inicio", new { username = username_param });
                     }
                     else
+                    {
                         dao.Update(recebimento);
-                    return RedirectToAction("Inicio");
+                        return RedirectToAction("Inicio", new { username = username_param });
+                    }
+                        
+                
                 }
             }
             catch (Exception erro)
@@ -105,9 +117,19 @@ namespace PBL_Electronicrap.Controllers
             
             if (recebimento.sender_cpf != null)
             {
-                ChecaPreenchimentoCPF(dao, recebimento.sender_cpf, operacao);
-                if (dao.Consulta_CNPJ_CPF(recebimento.sender_cpf) == null)
-                    ModelState.AddModelError("sender_cpf", "CPF não cadastrado no sistema.");
+                
+
+                int result = ChecaPreenchimentoCPF(dao, recebimento.sender_cpf, operacao);
+                if(result == 1) { ModelState.AddModelError("sender_cpf", "Campo obrigatório!"); }
+                else if (result == 2) { ModelState.AddModelError("sender_cpf", "CPF preenchido não é válido."); }
+                else if (result == 3) { ModelState.AddModelError("sender_cpf", "Documento não encontrado."); }
+                else
+                {
+                    if (dao.Consulta_CNPJ_CPF(recebimento.sender_cpf) == null)
+                        ModelState.AddModelError("sender_cpf", "CPF não cadastrado no sistema.");
+                }
+
+                
             }
             else
                 ModelState.AddModelError("sender_cpf", "Campo obrigatório!");
@@ -124,16 +146,15 @@ namespace PBL_Electronicrap.Controllers
             if (string.IsNullOrEmpty(campo))
                 ModelState.AddModelError(nomeCampo, mensagem);
         }
-        private void ChecaPreenchimentoCPF(UserSenderDAO dao, string cpf, string operacao)
+        private int ChecaPreenchimentoCPF(UserSenderDAO dao, string cpf, string operacao)
         {
             if (cpf == null)
-            { ModelState.AddModelError("cpf", "Campo obrigatório!"); return; }
+            {  return 1; }
             else if (ValidateCPF(cpf) != true)
-            { ModelState.AddModelError("cpf", "CPF preenchido não é válido."); return; }
-            else if (operacao == "I" && dao.Consulta_CNPJ_CPF(cpf) != null)
-            { ModelState.AddModelError("cpf", "Documento já está em uso."); return; }
+            { return 2; }
             else if (operacao == "A" && dao.Consulta_CNPJ_CPF(cpf) == null)
-            { ModelState.AddModelError("cpf", "Documento não encontrado."); return; }
+            { return 3; }
+            else return 0;
 
         }
 

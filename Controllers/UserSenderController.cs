@@ -44,6 +44,7 @@ namespace PBL_Electronicrap.Controllers
             try
             {
                 ValidaDados(userSender, Operacao);
+                string username_parametro = userSender.username;
                 if (ModelState.IsValid == false)
                 {
                     ViewBag.Operacao = Operacao;
@@ -54,14 +55,17 @@ namespace PBL_Electronicrap.Controllers
                     UserSenderDAO dao = new UserSenderDAO();
                     if (Operacao == "I")
                     {
-                        string username_parametro = userSender.username;
+                        
                         dao.Insert(userSender);
                         return RedirectToAction("CriaNovo", "UserSenderLogin", new { username_param = username_parametro });
                     }
-                        
                     else
+                    {
                         dao.Update(userSender);
-                    return RedirectToAction("index");
+                        return RedirectToAction("HomeSender","Login", new { username_parameter = username_parametro });
+                    }
+                        
+                    
                 }
             }
             catch (Exception erro)
@@ -76,11 +80,12 @@ namespace PBL_Electronicrap.Controllers
                 ViewBag.Operacao = "A";
                 UserSenderDAO dao = new UserSenderDAO();
                 UserSenderViewModel sender = dao.ConsultaUsername(username);
-
+                ViewBag.id = sender.id;
+                ViewBag.data_criacao = sender.created_date;
                 if (sender == null)
                     return RedirectToAction("index");
                 else
-                    return View("Form", sender);
+                    return View("FormUpdate", sender);
             }
             catch (Exception erro)
             {

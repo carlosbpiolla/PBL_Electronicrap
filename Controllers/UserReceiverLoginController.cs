@@ -26,12 +26,14 @@ namespace PBL_Electronicrap.Controllers
             UserReceiverLoginDAO receiverDAO = new UserReceiverLoginDAO();
             receiverLogin.id = receiverDAO.ProximoId();
             receiverLogin.username= username_param;
+            ViewBag.id = receiverLogin.id;
             return View("Form", receiverLogin);
         }
         public override IActionResult Save(UserReceiverLoginViewModel receiverLogin, string Operacao)
         {
             try
             {
+                string username_param = receiverLogin.username;
                 ValidaDados(receiverLogin, Operacao);
                 if (ModelState.IsValid == false)
                 {
@@ -45,7 +47,7 @@ namespace PBL_Electronicrap.Controllers
                         dao.Insert(receiverLogin);
                     else
                         dao.Update(receiverLogin);
-                    return RedirectToAction("PagInicialReceiver", "Login");
+                    return RedirectToAction("HomeReceiver", "Login", new {username = username_param});
                 }
             }
             catch (Exception erro)

@@ -26,13 +26,15 @@ namespace PBL_Electronicrap.Controllers
             UserReceiverDAO receiverDAO = new UserReceiverDAO();
             userReceiver.id = receiverDAO.ProximoId();
             userReceiver.created_date = DateTime.Today;
-
+            ViewBag.id = userReceiver.id;
+            ViewBag.data_criacao = userReceiver.created_date;
             return View("Form", userReceiver);
         }
         public override IActionResult Save(UserReceiverViewModel userReceiver, string Operacao)
         {
             try
             {
+                string username_parametro = userReceiver.username;
                 ValidaDados(userReceiver, Operacao);
                 if (ModelState.IsValid == false)
                 {
@@ -46,12 +48,14 @@ namespace PBL_Electronicrap.Controllers
                     if (Operacao == "I")
                     {
                         dao.Insert(userReceiver);
-                        string username_parametro = userReceiver.username;
+                        
                         return RedirectToAction("CriaNovo", "UserReceiverLogin", new { username_param = username_parametro });
                     }
                     else
+                    {
                         dao.Update(userReceiver);
-                    return RedirectToAction("Index");
+                        return RedirectToAction("HomeReceiver", "Login", new { username = username_parametro });
+                    }
                 }
             }
             catch (Exception erro)
@@ -67,12 +71,13 @@ namespace PBL_Electronicrap.Controllers
                 ViewBag.Operacao = "A";
                 UserReceiverDAO dao = new UserReceiverDAO();
                 UserReceiverViewModel receiver = dao.ConsultaUsername(username);
-
+                ViewBag.id = receiver.id;
+                ViewBag.data_criacao = receiver.created_date;
                 PreparaListaCategoriasParaCombo();
                 if (receiver == null)
                     return RedirectToAction("index");
                 else
-                    return View("Form", receiver);
+                    return View("FormUpdate", receiver);
             }
             catch (Exception erro)
             {

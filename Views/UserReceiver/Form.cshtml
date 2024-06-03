@@ -120,15 +120,17 @@
             </a>
             <ul class="menu">
                 <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><a asp-area="" asp-controller="Login" asp-action="PagLogin">Entre</a></li>
+                <li><a asp-area="" asp-controller="Login" asp-action="PagLogin">Entrar</a></li>
             </ul>
         </nav>
     </div>
 </header>
 <div class="form-container">
-    <h2>Cadastro de Usuario Receiver</h2>
+    <h2>Cadastro de Recebedor</h2>
     <form action="Save" method="post" class="form-group">
         <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+        <input type="hidden" asp-for=id id="id" name="id" value="@ViewBag.id" />
+        <input type="hidden" asp-for=created_date id="created_date" name="created_date" value="@ViewBag.data_criacao" />
         <div class="form-group">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" oninput="toLowerCase(this)">

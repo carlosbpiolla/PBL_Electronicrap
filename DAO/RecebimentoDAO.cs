@@ -37,7 +37,7 @@ namespace PBL_Electronicrap.DAO
             {
                 new SqlParameter("recebimento_id", model.id),
                 new SqlParameter("quantidade_recebimento", model.quantidade),
-                new SqlParameter("descricao_recebimneto", model.descricao),
+                new SqlParameter("descricao_recebimento", model.descricao),
                 new SqlParameter("fk_user_sender_id", model.sender_id),
                 new SqlParameter("fk_user_receiver_id", model.receiver_id),
                 new SqlParameter("fk_categoria_lixo", model.categoria_lixo),

@@ -21,14 +21,14 @@
 <div class="form-container">
     <form action="Save" method="post" class="form-group">
         <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
-        
+        <input type="hidden" asp-for=id id="id" name="id" value="@ViewBag.id" />
         <div class="form-group">
             <label for="username">Username:</label>
             <input asp-for="username" type="text" id="username" name="username" readonly>
         </div>
         <div class="form-group">
             <label for="password">Senha:</label>
-            <input type="text" id="password" name="password" required>
+            <input type="password" id="password" name="password" required>
         </div>
         
         <div class="form-group">

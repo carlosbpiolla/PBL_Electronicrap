@@ -4,9 +4,21 @@
     Layout = null;
 }
 <!-- MASCARA CPF-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/recebimento.css">
+    <link rel="stylesheet" href="~/css/hd_ft.css">
+
+</head>
 <script>
     $(document).ready(function() { 
-      $('#cpf').on('input', function() {
+      $('#sender_cpf').on('input', function() {
         var cpf = $(this).val();
         // Remover todos os caracteres que não são números
         cpf = cpf.replace(/\D/g, '');
@@ -16,15 +28,6 @@
       });
     });
 </script>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="~/css/recebimento.css">
-    <link rel="stylesheet" href="~/css/hd_ft.css">
-
-</head>
 <header class="site-header">
     <div>
         <nav>
@@ -39,37 +42,47 @@
     </div>
 </header>
 <body>
+    
     <div class="container">
-        <div class="form-group">
-            <label for="full_name">Nome do Descartador:</label>
-            <input type="text" asp-for=sender_full_name id="sender_full_name" name="sender_full_name">
-            <span asp-validation-for="sender_full_name" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label for="sender_cpf">CPF do Descartador:</label>
-            <input type="text" asp-for=sender_cpf id="sender_cpf" name="cpf" maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="XXX.XXX.XXX-XX" title="Digite um CPF válido">
-            <span asp-validation-for="sender_cpf" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label for="quantidade">Quantidade Descartada</label>
-            <input type="text" asp-for=quantidade id="quantidade" name="quantidade">
-            <span asp-validation-for="quantidade" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label for="descricao">Descrição dos Itens:</label>
-            <input type="text" asp-for=descricao id="sender_full_name" name="sender_full_name">
-            <span asp-validation-for="descricao" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-           <label for="categoria_lixo" class="control-label">Categoria do Lixo Recebido</label>
-            <select asp-for="categoria_lixo" asp-items="ViewBag.Categorias" class="form-control"> </select>
-            <span asp-validation-for="categoria_lixo" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label for="data">Data do Descarte:</label>
-            <input type="text" asp-for=data id="data" name="data">
-            <span asp-validation-for="data" class="text-danger"></span>
-        </div>
+        <h2>Cadastro de Recebimento</h2>
+        <form action="Save" method="post" class="form-group">
+            <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+            <input type="hidden" asp-for=id id="id" name="id" value="@ViewBag.id" />
+            <input type="hidden" asp-for=receiver_id id="receiver_id" name="receiver_id" value="@ViewBag.receiver_id" />
+            <div class="form-group">
+                <label for="full_name">Nome do Descartador:</label>
+                <input type="text" asp-for=sender_full_name id="sender_full_name" name="sender_full_name">
+                <span asp-validation-for="sender_full_name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="sender_cpf">CPF do Descartador:</label>
+                <input type="text" asp-for=sender_cpf id="sender_cpf" name="sender_cpf" maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="XXX.XXX.XXX-XX" title="Digite um CPF válido">
+                <span asp-validation-for="sender_cpf" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="quantidade">Quantidade Descartada</label>
+                <input type="text" asp-for=quantidade id="quantidade" name="quantidade">
+                <span asp-validation-for="quantidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="descricao">Descrição dos Itens:</label>
+                <input type="text" asp-for=descricao id="descricao" name="descricao">
+                <span asp-validation-for="descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+               <label for="categoria_lixo" class="control-label">Categoria do Lixo Recebido</label>
+                <select asp-for="categoria_lixo" asp-items="ViewBag.Categorias" class="form-control"> </select>
+                <span asp-validation-for="categoria_lixo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="data">Data do Descarte:</label>
+                <input type="date" asp-for=data id="data" name="data">
+                <span asp-validation-for="data" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit">Enviar</button>
+            </div>
+        </form>
     </div>
 
 </body>
