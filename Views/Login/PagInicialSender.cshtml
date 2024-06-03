@@ -20,13 +20,13 @@
 </header>
 <div class="container">
     <h2>Login efetuado - Sender!</h2>
-    <a class="nav-link text-dark" asp-area="" asp-controller="UserSender" asp-action="Inicio">Veja os recebedores na sua região</a>
+    <a class="nav-link text-dark" href="/UserSender/Inicio?username=@Model.username">Veja os recebedores na sua região</a>
     <a class="nav-link text-dark" href="/UserSender/Update?username=@Model.username">edite seus dados</a>
 </div> 
 <footer class="site-footer">
     <div >
         <p>&copy; 2024 ec8-electronicrap.azurewebsites.net. Todos os direitos reservados.</p>
-        <a href="https://github.com/carlosbpiolla/PBL_Electronicap" target="_blank">
+        <a href="https://github.com/carlosbpiolla/PBL_Electronicrap" target="_blank">
             <img src="~/css/logo_git.png" alt="GitHub">
         </a>
     </div>

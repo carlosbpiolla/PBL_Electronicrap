@@ -64,8 +64,12 @@ body, html {
     font-weight: bold;
     text-align: center;
     transition: background-color 0.3s ease;
+    flex-direction: column;
 }
-
+.overlay p {
+    font-size: 16px; /* Ajuste o tamanho conforme necessário */
+    margin-top: 10px; /* Espaçamento entre o span e o parágrafo */
+}
 .half-page:hover .overlay {
     background-color: rgba(209, 209, 209, 0.8);
 }

@@ -11,8 +11,9 @@ namespace PBL_Electronicrap.Controllers
 {
     public class UserSenderController : PadraoController<UserSenderViewModel>
     {
-        public IActionResult Inicio()
+        public IActionResult Inicio(string username)
         {
+            ViewBag.senderUsername = username;
             ListaFiltros();
             CategoriaLixoDAO dao = new CategoriaLixoDAO();
             List<CategoriaLixoViewModel> listaCateg = dao.ListaCategorias();

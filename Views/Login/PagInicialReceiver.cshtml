@@ -2,11 +2,17 @@
 @{
     Layout = null;
 }
-<link rel="stylesheet" href="~/css/hd_ft.css">
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/hd_ft.css">
 <link rel="stylesheet" href="~/css/pag_inicial.css">
+</head>
 <header class="site-header">
-    <div class="container">
+    <div>
         <nav>
             <a class="logo" href="#">
                 <img src="~/css/logo_electronicrap.png" alt="Electronicrap Logo" style="height: 40px;">
@@ -17,15 +23,17 @@
         </nav>
     </div>
 </header>
+<body>
 <div class="container">
     <h2>Login efetuado - Receiver!</h2> 
     <a class="nav-link" href="/UserReceiver/Update?username=@Model.username">Edite seus dados</a>
     <a class="nav-link" href="/Recebimento/Inicio?username=@Model.username">Veja seus ultimos recebimentos</a>
 </div>
+</body>
 <footer class="site-footer">
-    <div class="container">
+    <div>
         <p>&copy; 2024 ec8-electronicrap.azurewebsites.net. Todos os direitos reservados.</p>
-        <a href="https://github.com/carlosbpiolla/PBL_Electronicap" target="_blank">
+        <a href="https://github.com/carlosbpiolla/PBL_Electronicrap" target="_blank">
             <img src="~/css/logo_git.png" alt="GitHub">
         </a>
     </div>

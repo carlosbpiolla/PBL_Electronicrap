@@ -20,6 +20,7 @@ body {
     background-color: #f3f7f0;
     color: #333;
     font-family: 'Roboto', sans-serif;
+    margin: 0; /* Remover margens padrão */
 }
 
 .container {
@@ -28,6 +29,21 @@ body {
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
+}
+
+/* Ajuste para o cabeçalho */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff; /* Cor de fundo do cabeçalho */
+    z-index: 1000; /* Para garantir que o cabeçalho fique acima do conteúdo */
+}
+
+/* Adicionar espaço abaixo do cabeçalho */
+body {
+    padding-top: 60px; /* Altura do cabeçalho + algum espaço */
 }
 
 /* Ajustes para a tabela */
