@@ -12,17 +12,16 @@
     <link rel="stylesheet" href="~/css/hd_ft.css">
 
 </head>
+<body>
 <header class="site-header">
-    <div class="container">
+    <div >
         <nav>
             <a class="logo" href="#">
                 <img src="~/css/logo_electronicrap.png" alt="Electronicrap Logo" style="height: 40px;">
             </a>
             <ul class="menu">
-                <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
-                <li><a asp-area="" asp-controller="Home" asp-action="PagCriaConta">Crie sua conta!</a></li>
-                <li><a asp-area="" asp-controller="Login" asp-action="PagLogin">Entre</a></li>
+                <li><a asp-area="" asp-controller="Login" asp-action="HomeSender">Home</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">Logout</a></li>
             </ul>
         </nav>
     </div>
@@ -69,7 +68,7 @@
             </tbody>
      </table>
 </form>
-<body>
+
     <div id="root"></div>
 
     <!-- Adicionar a biblioteca do React -->
@@ -81,7 +80,6 @@
 
     <!-- Adicionar o código do seu aplicativo React -->
     <script src="~/js/app.js"></script>
-</body>
 <footer class="site-footer">
     <div class="container">
         <p>&copy; 2024 ec8-electronicrap.azurewebsites.net. Todos os direitos reservados.</p>
@@ -90,6 +88,8 @@
         </a>
     </div>
 </footer>
+</body>
+
 </html>
 
     @functions {

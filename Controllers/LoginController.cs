@@ -11,45 +11,36 @@ namespace PBL_Electronicrap.Controllers
         {
             return View("PagLogin");
         }
-        public IActionResult HomeReceiver()
+        public IActionResult HomeReceiver(string username)
         {
-            return View("PagInicialReceiver");
+            LoginDAO dao = new LoginDAO();
+            LoginViewModel model = dao.ConsultaLoginUsername(username, "receiver");
+
+            return View("PagInicialReceiver", model);
         }
-        public IActionResult HomeSender()
+        public IActionResult HomeSender(string username_parameter)
         {
-            return View("PagInicialSender");
+            LoginDAO dao = new LoginDAO();
+            LoginViewModel model = dao.ConsultaLoginUsername(username_parameter, "sender");
+
+            return View("PagInicialSender", model);
         }
         public IActionResult Login(LoginViewModel model)
         {
             try
             {
+                ValidaDados(model);
                 if (ModelState.IsValid == false)  
                 {
-                    return RedirectToAction("PagInicial");
+                    return View("PagLogin",model);
                 }
                 else
                 {
-                    ModelState.Clear(); // limpa os erros criados automaticamente pelo Asp.net (que podem estar com msg em inglês)
-                    var p = new SqlParameter[]
-                    {
-                         new SqlParameter("username", model.username.ToLower()),
-                         new SqlParameter("password", model.password.ToLower()),
-                         new SqlParameter("userType", model.userType)
-                    };
-                    var tabela = HelperDAO.ExecutaProcSelect("spConsulta_Login", p);
-                    if (tabela.Rows.Count == 0)
-                    {
-                        ModelState.AddModelError("username", "Usuário ou senha inválidos");
-                        return RedirectToAction("PagLogin");
-                    }
+                    if (model.userType == "sender")
+                        return View("PagInicialSender", model);
                     else
-                    {
-                        if (model.userType == "sender")
-                            return View("PagInicialSender", model);
-                        else
-                            return View("PagInicialReceiver", model);
-                    }
-                        
+                        return View("PagInicialReceiver", model);
+
                 }
 
 
@@ -61,6 +52,20 @@ namespace PBL_Electronicrap.Controllers
             }
         }
 
-
+        private void ValidaDados(LoginViewModel model)
+        {
+            ModelState.Clear(); // limpa os erros criados automaticamente pelo Asp.net (que podem estar com msg em inglês)
+            var p = new SqlParameter[]
+                    {
+                         new SqlParameter("username", model.username.ToLower()),
+                         new SqlParameter("password", model.password.ToLower()),
+                         new SqlParameter("userType", model.userType)
+                    };
+            var tabela = HelperDAO.ExecutaProcSelect("spConsulta_Login", p);
+            if (tabela.Rows.Count == 0)
+            {
+                ModelState.AddModelError("username", "Usuário ou senha inválidos");
+            }
+        }
     }
 }

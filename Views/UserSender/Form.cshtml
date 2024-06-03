@@ -4,7 +4,7 @@
 }
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-<link rel="stylesheet" href="~/css/forms_us.css">
+<link rel="stylesheet" href="~/css/forms.css">
 <link rel="stylesheet" href="~/css/hd_ft.css">
 
 <!-- MASCARA CEP-->
@@ -120,8 +120,6 @@
             </a>
             <ul class="menu">
                 <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
-                <li><a asp-area="" asp-controller="Home" asp-action="PagCriaConta">Crie sua conta!</a></li>
                 <li><a asp-area="" asp-controller="Login" asp-action="PagLogin">Entre</a></li>
             </ul>
         </nav>
@@ -131,7 +129,8 @@
     <h2>Cadastro de Usuario Sender</h2>
     <form action="Save" method="post" class="form-group">
         <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
-        
+        <input type="hidden" id="id" name="id" value="@ViewBag.id" />
+        <input type="hidden" id="created_date" name="created_date" value="@ViewBag.data_criacao" />
         <div class="form-group">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" oninput="toLowerCase(this)">

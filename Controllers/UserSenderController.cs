@@ -33,8 +33,8 @@ namespace PBL_Electronicrap.Controllers
             UserSenderViewModel userSender = new UserSenderViewModel();
 
             UserSenderDAO senderDAO = new UserSenderDAO();
-            userSender.id = senderDAO.ProximoId();
-            userSender.created_date = DateTime.Today;
+            ViewBag.id = senderDAO.ProximoId();
+            ViewBag.data_criacao = DateTime.Today;
 
             return View("Form", userSender);
         }

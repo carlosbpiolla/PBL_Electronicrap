@@ -24,7 +24,7 @@ namespace PBL_Electronicrap.Controllers
             UserSenderLoginViewModel senderLogin = new UserSenderLoginViewModel();
 
             UserSenderLoginDAO senderDAO = new UserSenderLoginDAO();
-            senderLogin.id = senderDAO.ProximoId();
+            ViewBag.id = senderDAO.ProximoId();
             senderLogin.username = username_param;
             return View("Form", senderLogin);
         }
@@ -40,12 +40,13 @@ namespace PBL_Electronicrap.Controllers
                 }
                 else
                 {
+                    string username_parametro = senderLogin.username;
                     UserSenderLoginDAO dao = new UserSenderLoginDAO();
                     if (Operacao == "I")
                         dao.Insert(senderLogin);
                     else
                         dao.Update(senderLogin);
-                    return RedirectToAction("PagInicialSender", "Login");
+                    return RedirectToAction("HomeSender", "Login", new { username_parameter = username_parametro });
                 }
             }
             catch (Exception erro)

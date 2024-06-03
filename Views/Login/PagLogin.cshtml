@@ -3,31 +3,37 @@
 @{
     Layout = null;
 }
-<link rel="stylesheet" href="~/css/hd_ft.css">
-
-<link rel="stylesheet" href="~/css/login.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/hd_ft.css">
+    <link rel="stylesheet" href="~/css/login.css">
+</head>
 <header class="site-header">
-    <div class="container">
+    <div>
         <nav>
             <a class="logo" href="#">
                 <img src="~/css/logo_electronicrap.png" alt="Electronicrap Logo" style="height: 40px;">
             </a>
             <ul class="menu">
                 <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
                 <li><a asp-area="" asp-controller="Home" asp-action="PagCriaConta">Crie sua conta!</a></li>
                 <li><a asp-area="" asp-controller="Login" asp-action="PagLogin">Entre</a></li>
             </ul>
         </nav>
     </div>
 </header>
+<body>
+
 <div class="form-container">
     <form action="Login" method="post" class="form-group">
         <h2>Login</h2>
             <label for="username">Usuário:</label>
             <input type="text" id="username" name="username" required>
             <span asp-validation-for="username" class="text-danger"></span>
-
+            <br />
             
             <label for="password">Senha:</label>
             <input type="password" id="password" name="password" required>
@@ -35,18 +41,24 @@
             <br />
             
             <div class="radio-group">
-                <label><input type="radio" id="userType" name="userType" value="sender" required> Sender</label>
-                <label><input type="radio" id="userType" name="userType" value="receiver" required> Receiver</label>
+                <label><input type="radio" id="userType" name="userType" value="sender" required> Entregador</label>
+                <label><input type="radio" id="userType" name="userType" value="receiver" required> Recebedor</label>
             </div>
             
             <button type="submit">Entrar</button>
+            <br />
+            <br />
+            <br />
+            <label>Não possui conta? <a asp-area="" asp-controller="Home" asp-action="PagCriaConta"><u>Cadastre-se!</u></a></label>
         </form>
 </div> 
 <footer class="site-footer">
-    <div class="container">
+    <div >
         <p>&copy; 2024 ec8-electronicrap.azurewebsites.net. Todos os direitos reservados.</p>
         <a href="https://github.com/carlosbpiolla/PBL_Electronicap" target="_blank">
             <img src="~/css/logo_git.png" alt="GitHub">
         </a>
     </div>
 </footer>
+</body>
+</html>

@@ -6,8 +6,8 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: flex-start; /* Ajusta o alinhamento no topo */
-    align-items: flex-start; /* Ajusta o alinhamento no topo */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
     flex-direction: column; /* Garante que os itens fiquem em coluna */
     min-height: 100vh;
 }
@@ -46,13 +46,12 @@ body {
     box-sizing: border-box;
     animation: fadeIn 0.5s ease-in-out;
     overflow-y: auto; /* Adiciona barra de rolagem vertical quando necessário */
-    margin-top: 100px; /* Ajusta o espaço abaixo do cabeçalho */
-    margin-bottom: 100px; /* Ajusta o espaço acima do rodapé */
-    margin-left: auto; /* Centraliza horizontalmente */
-    margin-right: auto; /* Centraliza horizontalmente */
-    display: flex; /* Para alinhar itens no centro */
-    justify-content: center; /* Para alinhar itens no centro */
-    align-items: center; /* Para alinhar itens no centro */
+    margin-top: 120px; /* Ajusta o espaço abaixo do cabeçalho */
+    margin-bottom: 120px; /* Ajusta o espaço acima do rodapé */
+    text-align: center; /* Centraliza todo o conteúdo */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Garante que o conteúdo dentro do contêiner também seja centralizado */
 }
 
 /* Adiciona uma classe de contêiner para ajustes em telas pequenas */
@@ -62,8 +61,8 @@ body {
         border-radius: 0; /* Remove o arredondamento da borda */
         box-shadow: none; /* Remove a sombra */
         overflow: auto; /* Adiciona barra de rolagem para conteúdo grande */
-        margin-top: 80px; /* Ajusta o espaço abaixo do cabeçalho */
-        margin-bottom: 80px; /* Ajusta o espaço acima do rodapé */
+        margin-top: 100px; /* Ajusta o espaço abaixo do cabeçalho */
+        margin-bottom: 100px; /* Ajusta o espaço acima do rodapé */
     }
 }
 
@@ -90,6 +89,7 @@ h2 {
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
+    width: 100%; /* Garante que os campos de entrada ocupem a largura total do contêiner */
 }
 
 label {

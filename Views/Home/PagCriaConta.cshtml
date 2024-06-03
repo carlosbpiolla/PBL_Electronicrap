@@ -6,28 +6,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Divisão de Página</title>
     <link rel="stylesheet" href="~/css/Home/cria_conta.css">
     <link rel="stylesheet" href="~/css/hd_ft.css">
 </head>
 
-
-<body>
-    <header class="site-header">
-    <div class="container">
+<header class="site-header">
+    <div >
         <nav>
             <a class="logo" href="#">
                 <img src="~/css/logo_electronicrap.png" alt="Electronicrap Logo" style="height: 40px;">
             </a>
             <ul class="menu">
                 <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
                 <li><a asp-area="" asp-controller="Home" asp-action="PagCriaConta">Crie sua conta!</a></li>
                 <li><a asp-area="" asp-controller="Login" asp-action="PagLogin">Entre</a></li>
             </ul>
         </nav>
     </div>
 </header>
+<body>
+    
     <div class="container">
         <div class="half-page left" onclick="location.href='/UserSender/Create'">
             <div class="overlay">
@@ -42,7 +40,7 @@
     </div>
     
 <footer class="site-footer">
-    <div class="container">
+    <div >
         <p>&copy; 2024 ec8-electronicrap.azurewebsites.net. Todos os direitos reservados.</p>
         <a href="https://github.com/carlosbpiolla/PBL_Electronicap" target="_blank">
             <img src="~/css/logo_git.png" alt="GitHub">

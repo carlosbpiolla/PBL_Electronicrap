@@ -12,8 +12,6 @@
             </a>
             <ul class="menu">
                 <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
-                <li><a asp-area="" asp-controller="Home" asp-action="PagCriaConta">Crie sua conta!</a></li>
                 <li><a asp-area="" asp-controller="Login" asp-action="PagLogin">Entre</a></li>
             </ul>
         </nav>
@@ -22,7 +20,7 @@
 <div class="form-container">
     <form action="Save" method="post" class="form-group">
         <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
-        
+        <input type="hidden" id="id" name="id" value="@ViewBag.id" />
         <div class="form-group">
             <label for="username">Username:</label>
             <input asp-for="username" type="text" id="username" name="username" readonly>

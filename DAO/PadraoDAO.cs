@@ -63,6 +63,19 @@ namespace PBL_Electronicrap.DAO
             else
                 return MontaModel(tabela.Rows[0]);
         }
+        public virtual T ConsultaLoginUsername(string username, string userType)
+        {
+            var p = new SqlParameter[]
+            {
+                 new SqlParameter("username", username),
+                 new SqlParameter("userType", userType)
+            };
+            var tabela = HelperDAO.ExecutaProcSelect("spConsulta_Login_por_Username", p);
+            if (tabela.Rows.Count == 0)
+                return null;
+            else
+                return MontaModel(tabela.Rows[0]);
+        }
         public virtual T Consulta_CNPJ_CPF(string documento)
         {
             var p = new SqlParameter[]
