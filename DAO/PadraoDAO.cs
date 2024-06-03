@@ -32,10 +32,9 @@ namespace PBL_Electronicrap.DAO
         {
             var p = new SqlParameter[]
             {
-                 new SqlParameter("id", id),
-                 new SqlParameter("tabela", Tabela)
+                 new SqlParameter("id", id)
             };
-            HelperDAO.ExecutaProc("spDelete_", p);
+            HelperDAO.ExecutaProc("spDelete_"+Tabela, p);
         }
         public virtual T Consulta(int id)
         {

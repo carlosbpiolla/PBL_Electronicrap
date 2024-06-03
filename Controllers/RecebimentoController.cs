@@ -53,11 +53,11 @@ namespace PBL_Electronicrap.Controllers
                     if (Operacao == "I")
                     {
                         dao.Insert(recebimento);
-                        return RedirectToAction("");
+                        return RedirectToAction("Inicio");
                     }
                     else
                         dao.Update(recebimento);
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Inicio");
                 }
             }
             catch (Exception erro)
@@ -66,7 +66,20 @@ namespace PBL_Electronicrap.Controllers
             }
         }
 
-
+        public IActionResult Excluir(string username, int id)
+        {
+            try
+            {
+                string name = username;
+                RecebimentoDAO dao = new RecebimentoDAO();
+                dao.Delete(id);
+                return RedirectToAction("Inicio", new {username = name});
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.ToString()));
+            }
+        }
 
         private void PreparaListaCategoriasParaCombo()
         {

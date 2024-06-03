@@ -34,6 +34,7 @@
         <table class="table table-responsive table-hover">
             <thead>
                 <tr>
+                    <th>Excluir?</th>
                     <th>ID</th>
                     <th>Nome Descartador</th>
                     <th>CPF Descartador</th>
@@ -47,6 +48,7 @@
                 @foreach (var recebimento in Model)
                 {
                     <tr>
+                        <td><a href="javascript:apagarReceb(@recebimento.id)"><img src="~/css/excluir.png"></a></td>
                         <td>@recebimento.id</td>
                         <td>@recebimento.sender_full_name</td>
                         <td>@FormatCPF(recebimento.sender_cpf)</td>
@@ -69,7 +71,13 @@
     </div>
 </footer>
 </html>
-
+<script>
+    function apagarReceb(id)
+    {
+        if (confirm('Confirma a exclusão do registro?'))
+            location.href = 'Excluir?username=@ViewBag.receiverUsername&id=' + id;
+    }
+</script>
 @functions{
     public string FormatCPF(string cpf)
 {
